@@ -8,10 +8,13 @@
 
 #import "YoutubeViewController.h"
 #import "YTPlayerView.h"
+#import "YouTubeLayout.h"
+#import "VideoCell.h"
 
 @interface YoutubeViewController () <YTPlayerViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *videoArray;
+@property (nonatomic, strong) YouTubeLayout *youTubeLayout;
 
 @end
 
@@ -26,9 +29,14 @@
     
     [self apiFetch];
     
+    self.youTubeLayout = [[YouTubeLayout alloc] init];
+    
+    [self.collectionView setCollectionViewLayout:self.youTubeLayout animated:YES];
+    
 //    [self.playerView loadVideoById:@"UCE_M8A5yxnLfW0KghEeajjw" startSeconds:1 suggestedQuality:4];
     
-    // Do any additional setup after loading the view.
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -95,6 +103,22 @@ NSURLSessionDataTask *dataTask = [sharedSession dataTaskWithRequest:urlRequest c
 
 [dataTask resume];
 
+}
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{  //NUMBER OF ITEMS FETCHED
+    return 2;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    VideoCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"VideoCell" forIndexPath:indexPath];
+    
+    return cell;
+    
 }
 
 

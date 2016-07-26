@@ -38,6 +38,12 @@ MoodsDataSource* moods;
     
 }
 
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    
+   NSString *value = [moods.moods objectAtIndex:row];
+    
+}
+
 -(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
     
     UILabel *label = (UILabel*)view;
