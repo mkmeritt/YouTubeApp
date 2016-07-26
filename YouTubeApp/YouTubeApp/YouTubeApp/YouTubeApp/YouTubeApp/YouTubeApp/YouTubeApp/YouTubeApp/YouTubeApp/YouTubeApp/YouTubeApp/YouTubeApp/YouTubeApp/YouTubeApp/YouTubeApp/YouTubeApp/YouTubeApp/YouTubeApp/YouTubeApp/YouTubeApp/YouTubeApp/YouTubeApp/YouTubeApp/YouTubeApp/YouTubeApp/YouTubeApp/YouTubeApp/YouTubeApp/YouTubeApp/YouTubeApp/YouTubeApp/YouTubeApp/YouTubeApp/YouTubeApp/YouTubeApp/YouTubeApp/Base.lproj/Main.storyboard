@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background.png" translatesAutoresizingMaskIntoConstraints="NO" id="nXN-kt-3mV">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Effects.png" translatesAutoresizingMaskIntoConstraints="NO" id="8W3-Tm-Msh">
+                                <rect key="frame" x="0.0" y="-881" width="600" height="1481"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="youtube.png" translatesAutoresizingMaskIntoConstraints="NO" id="JYt-sX-25K">
+                                <rect key="frame" x="0.0" y="-20" width="600" height="261"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="261" id="UXQ-6M-oCb"/>
+                                    <constraint firstAttribute="width" constant="600" id="WnX-mJ-vAd"/>
+                                </constraints>
+                            </imageView>
+                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RmQ-gP-wYa">
+                                <rect key="frame" x="0.0" y="261" width="600" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="L7a-Cb-bfe"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="F0G-bK-lBn"/>
+                                </connections>
+                            </pickerView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textbox.png" translatesAutoresizingMaskIntoConstraints="NO" id="ytH-On-foG">
+                                <rect key="frame" x="89" y="249" width="423" height="211"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ytH-On-foG" firstAttribute="top" secondItem="JYt-sX-25K" secondAttribute="bottom" constant="8" symbolic="YES" id="0Iu-CU-uex"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ytH-On-foG" secondAttribute="trailing" constant="68" id="3cM-yW-lUQ"/>
+                            <constraint firstItem="ytH-On-foG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="69" id="AZq-gv-Lz4"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JYt-sX-25K" secondAttribute="bottom" constant="339" id="CDd-yU-fb0"/>
+                            <constraint firstItem="ytH-On-foG" firstAttribute="top" secondItem="JYt-sX-25K" secondAttribute="bottom" constant="20" id="GZ4-aJ-hH2"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nXN-kt-3mV" secondAttribute="bottom" id="Nt9-ch-aIe"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ytH-On-foG" secondAttribute="bottom" constant="140" id="PNa-Hl-6Qq"/>
+                            <constraint firstItem="RmQ-gP-wYa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="R0n-Yb-anD"/>
+                            <constraint firstItem="JYt-sX-25K" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="-20" id="RVo-vv-bxp"/>
+                            <constraint firstItem="ytH-On-foG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Rt2-Sl-oXm"/>
+                            <constraint firstItem="RmQ-gP-wYa" firstAttribute="top" secondItem="JYt-sX-25K" secondAttribute="bottom" constant="20" id="Th0-J6-wSG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ytH-On-foG" secondAttribute="trailing" constant="-20" id="U9j-V4-lwI"/>
+                            <constraint firstItem="ytH-On-foG" firstAttribute="top" secondItem="JYt-sX-25K" secondAttribute="bottom" constant="8" id="XW8-3r-Rze"/>
+                            <constraint firstItem="nXN-kt-3mV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ZYx-iJ-e7j"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RmQ-gP-wYa" secondAttribute="trailing" constant="-20" id="aPG-JN-poO"/>
+                            <constraint firstItem="8W3-Tm-Msh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="cJr-Ty-gmY"/>
+                            <constraint firstItem="ytH-On-foG" firstAttribute="centerX" secondItem="RmQ-gP-wYa" secondAttribute="centerX" id="fpu-Ws-5Dp"/>
+                            <constraint firstAttribute="trailing" secondItem="JYt-sX-25K" secondAttribute="trailing" id="h1a-Df-puN"/>
+                            <constraint firstItem="ytH-On-foG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="69" id="jV9-ls-urx"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8W3-Tm-Msh" secondAttribute="bottom" id="mgh-wR-FGh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8W3-Tm-Msh" secondAttribute="trailing" constant="-20" id="n3L-G6-4ZU"/>
+                            <constraint firstItem="nXN-kt-3mV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nmT-jb-7k9"/>
+                            <constraint firstAttribute="trailing" secondItem="nXN-kt-3mV" secondAttribute="trailing" id="wWR-YS-T8f"/>
+                            <constraint firstItem="JYt-sX-25K" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xAt-EA-IAk"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3cM-yW-lUQ"/>
+                                <exclude reference="GZ4-aJ-hH2"/>
+                                <exclude reference="Rt2-Sl-oXm"/>
+                                <exclude reference="U9j-V4-lwI"/>
+                                <exclude reference="XW8-3r-Rze"/>
+                                <exclude reference="jV9-ls-urx"/>
+                                <exclude reference="CDd-yU-fb0"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="455" y="400"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Effects.png" width="1241" height="1481"/>
+        <image name="background.png" width="1242" height="2208"/>
+        <image name="textbox.png" width="970" height="218"/>
+        <image name="youtube.png" width="1242" height="731"/>
+    </resources>
+</document>
