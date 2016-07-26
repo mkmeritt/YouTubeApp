@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+@import UIKit;
 
 @interface Video : NSObject
+
+@property (nonatomic, strong) UIImage *videoThumbnail;
+@property (nonatomic, strong) NSString *videoID;
+@property (nonatomic, strong) NSString *genre;
 
 @end

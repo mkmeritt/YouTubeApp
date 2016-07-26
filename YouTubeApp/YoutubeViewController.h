@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class YTPlayerView;
 
 @interface YoutubeViewController : UIViewController
+
+@property (strong, nonatomic) IBOutlet YTPlayerView *playerView;
 
 @end
