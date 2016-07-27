@@ -13,6 +13,9 @@
 		6657DE3B1D47A8130002E818 /* How are you feeling..png in Resources */ = {isa = PBXBuildFile; fileRef = 6657DE391D47A8130002E818 /* How are you feeling..png */; };
 		6657DE3D1D47ACA80002E818 /* textbox+text.png in Resources */ = {isa = PBXBuildFile; fileRef = 6657DE3C1D47ACA70002E818 /* textbox+text.png */; };
 		6657DE401D47D4730002E818 /* YoutubeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6657DE3F1D47D4730002E818 /* YoutubeViewController.m */; };
+		6657DE421D47E60F0002E818 /* SearchButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6657DE411D47E60F0002E818 /* SearchButton.png */; };
+		6657DE451D4826FB0002E818 /* YouTubeLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6657DE441D4826FB0002E818 /* YouTubeLayout.m */; };
+		6657DE481D4827F20002E818 /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6657DE471D4827F20002E818 /* VideoCell.m */; };
 		666D82D21D46966500A8C714 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 666D82D11D46966500A8C714 /* main.m */; };
 		666D82D51D46966500A8C714 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 666D82D41D46966500A8C714 /* AppDelegate.m */; };
 		666D82D81D46966500A8C714 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666D82D71D46966500A8C714 /* ViewController.m */; };
@@ -39,6 +42,11 @@
 		6657DE3C1D47ACA70002E818 /* textbox+text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textbox+text.png"; sourceTree = "<group>"; };
 		6657DE3E1D47D4730002E818 /* YoutubeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoutubeViewController.h; sourceTree = "<group>"; };
 		6657DE3F1D47D4730002E818 /* YoutubeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoutubeViewController.m; sourceTree = "<group>"; };
+		6657DE411D47E60F0002E818 /* SearchButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchButton.png; sourceTree = "<group>"; };
+		6657DE431D4826FB0002E818 /* YouTubeLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeLayout.h; sourceTree = "<group>"; };
+		6657DE441D4826FB0002E818 /* YouTubeLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeLayout.m; sourceTree = "<group>"; };
+		6657DE461D4827F20002E818 /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
+		6657DE471D4827F20002E818 /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
 		666D82CD1D46966500A8C714 /* YouTubeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTubeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		666D82D11D46966500A8C714 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		666D82D31D46966500A8C714 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -106,10 +114,6 @@
 		666D82CF1D46966500A8C714 /* YouTubeApp */ = {
 			isa = PBXGroup;
 			children = (
-				6657DE3C1D47ACA70002E818 /* textbox+text.png */,
-				6657DE381D47A8130002E818 /* Effects.png */,
-				6657DE391D47A8130002E818 /* How are you feeling..png */,
-				6657DE361D47A79C0002E818 /* settings.png */,
 				666D82FB1D469B6100A8C714 /* Others */,
 				666D82FA1D469B5C00A8C714 /* View */,
 				666D82F91D469B5400A8C714 /* Controller */,
@@ -139,6 +143,8 @@
 				666D82F51D469B4800A8C714 /* UserProfile.m */,
 				666D82FC1D46C96000A8C714 /* MoodsDataSource.h */,
 				666D82FD1D46C96000A8C714 /* MoodsDataSource.m */,
+				6657DE461D4827F20002E818 /* VideoCell.h */,
+				6657DE471D4827F20002E818 /* VideoCell.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -152,6 +158,8 @@
 				6657DE3F1D47D4730002E818 /* YoutubeViewController.m */,
 				92C29E291D47DB5F0074A951 /* Video.h */,
 				92C29E2A1D47DB5F0074A951 /* Video.m */,
+				6657DE431D4826FB0002E818 /* YouTubeLayout.h */,
+				6657DE441D4826FB0002E818 /* YouTubeLayout.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -168,10 +176,15 @@
 		666D82FB1D469B6100A8C714 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				6657DE391D47A8130002E818 /* How are you feeling..png */,
+				6657DE361D47A79C0002E818 /* settings.png */,
 				666D82D31D46966500A8C714 /* AppDelegate.h */,
 				666D82D41D46966500A8C714 /* AppDelegate.m */,
 				666D82EA1D4697F600A8C714 /* background.png */,
 				666D82EB1D4697F600A8C714 /* button.png */,
+				6657DE411D47E60F0002E818 /* SearchButton.png */,
+				6657DE3C1D47ACA70002E818 /* textbox+text.png */,
+				6657DE381D47A8130002E818 /* Effects.png */,
 				666D82EC1D4697F600A8C714 /* textbox.png */,
 				666D82ED1D4697F600A8C714 /* youtube.png */,
 			);
@@ -248,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6657DE3B1D47A8130002E818 /* How are you feeling..png in Resources */,
+				6657DE421D47E60F0002E818 /* SearchButton.png in Resources */,
 				6657DE371D47A79C0002E818 /* settings.png in Resources */,
 				666D82E31D46966600A8C714 /* LaunchScreen.storyboard in Resources */,
 				666D82EF1D4697F600A8C714 /* button.png in Resources */,
@@ -316,11 +330,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6657DE481D4827F20002E818 /* VideoCell.m in Sources */,
 				666D82F61D469B4800A8C714 /* UserProfile+CoreDataProperties.m in Sources */,
 				666D82D81D46966500A8C714 /* ViewController.m in Sources */,
 				666D82F71D469B4800A8C714 /* UserProfile.m in Sources */,
 				92C29E2B1D47DB5F0074A951 /* Video.m in Sources */,
 				666D82DE1D46966500A8C714 /* YouTubeApp.xcdatamodeld in Sources */,
+				6657DE451D4826FB0002E818 /* YouTubeLayout.m in Sources */,
 				666D82D51D46966500A8C714 /* AppDelegate.m in Sources */,
 				666D82FE1D46C96000A8C714 /* MoodsDataSource.m in Sources */,
 				6657DE401D47D4730002E818 /* YoutubeViewController.m in Sources */,

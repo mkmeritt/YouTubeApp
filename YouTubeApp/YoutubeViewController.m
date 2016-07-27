@@ -10,15 +10,21 @@
 #import "ViewController.h"  
 #import "AppDelegate.h"
 #import "YTPlayerView.h"
+<<<<<<< HEAD
 #import "Video.h"
+=======
+#import "YouTubeLayout.h"
+#import "VideoCell.h"
+>>>>>>> 6003ba20da88162dcad4cc0eb95a4df71b1c8995
 
-@interface YoutubeViewController () <YTPlayerViewDelegate>
+@interface YoutubeViewController () <YTPlayerViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) NSMutableDictionary *videoDictionary;
 
 @property (nonatomic, strong) NSMutableArray *commentsArray;
 
 @property (nonatomic, strong) NSMutableArray *videoArray;
+@property (nonatomic, strong) YouTubeLayout *youTubeLayout;
 
 @property (nonatomic, strong) Video *video;
 
@@ -43,18 +49,25 @@
 //    [self apiFetch];
     [self apiCommentsFetch];
     
+<<<<<<< HEAD
     //set and load video to player
     self.video = [self createVideo];
     [self videoID:self.video andID:@""];
     [self.playerView loadWithVideoId:@"PQ4y2MNvJK0"];
+=======
+    self.youTubeLayout = [[YouTubeLayout alloc] init];
+>>>>>>> 6003ba20da88162dcad4cc0eb95a4df71b1c8995
     
-    // Do any additional setup after loading the view.
+    [self.collectionView setCollectionViewLayout:self.youTubeLayout animated:YES];
+    
+    NSLog(@"Mood is: %@", self.selectedMood);
+    
+    self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    
+//    [self.playerView loadVideoById:@"UCE_M8A5yxnLfW0KghEeajjw" startSeconds:1 suggestedQuality:4];
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 /*
 #pragma mark - Navigation
@@ -66,6 +79,7 @@
 }
 */
 
+<<<<<<< HEAD
 #pragma mark - AppDelegate Properties Access
 
 
@@ -79,6 +93,23 @@
 
 - (void)videoID:(Video *)video andID:(NSString *)videoID {
     video.videoID = videoID;
+=======
+/////TOUCH EVENTS
+-(void)prepareGestureRecoginzers{
+    [self prepareSwipeGestureRecognizers];
+}
+
+-(void)handleTapGesture:(UITapGestureRecognizer *)sender{
+    
+}
+
+-(void)prepareSwipeGestureRecognizers{
+    
+}
+
+-(void)swiped:(UISwipeGestureRecognizer*) recognizer{
+    
+>>>>>>> 6003ba20da88162dcad4cc0eb95a4df71b1c8995
 }
 
 #pragma mark - API Initiation
@@ -165,6 +196,7 @@
 
 }
 
+<<<<<<< HEAD
 - (NSString *)searchParameters {
     return @"";
 }
@@ -179,6 +211,24 @@
 }
 
 #pragma mark - API results 
+=======
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{  //NUMBER OF ITEMS FETCHED
+    return 2;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    VideoCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"VideoCell" forIndexPath:indexPath];
+    
+    return cell;
+    
+}
+
+>>>>>>> 6003ba20da88162dcad4cc0eb95a4df71b1c8995
 
 - (void)videoIDs {
     

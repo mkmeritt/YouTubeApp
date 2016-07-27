@@ -10,6 +10,8 @@
 
 @interface ViewController ()
 
+@property (nonatomic, strong) NSString* moodString;
+@property (nonatomic, assign) BOOL btnPressed;
 
 @end
 
@@ -22,6 +24,8 @@ MoodsDataSource* moods;
     [super viewDidLoad];
     
     moods = [[MoodsDataSource alloc] init];
+    
+     self.moodString = @"happy"; //default
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -37,6 +41,27 @@ MoodsDataSource* moods;
     return [moods.moods objectAtIndex:row];
     
 }
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    
+    self.moodString = [moods.moods objectAtIndex:row];
+    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    if([[segue identifier] isEqualToString:@"showResults"]) {
+        
+        if(self.btnPressed) {
+            
+            YoutubeViewController *controller = segue.destinationViewController;
+            controller.selectedMood = self.moodString;
+        }
+        
+    }
+
+}
+
 
 -(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
     
@@ -59,6 +84,10 @@ MoodsDataSource* moods;
 }
 
 - (IBAction)btnPressed:(id)sender {
-    
+    if(!self.btnPressed) {
+        self.btnPressed = YES;
+        
+        
+    }
 }
 @end

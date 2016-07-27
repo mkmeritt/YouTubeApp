@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MoodsDataSource.h"
+#import "YoutubeViewController.h"
 
 @interface ViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
