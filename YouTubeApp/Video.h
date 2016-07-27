@@ -14,5 +14,6 @@
 @property (nonatomic, strong) UIImage *videoThumbnail;
 @property (nonatomic, strong) NSString *videoID;
 @property (nonatomic, strong) NSString *genre;
+@property (nonatomic, strong) NSString *comments;
 
 @end
