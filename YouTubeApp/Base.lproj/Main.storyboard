@@ -56,7 +56,8 @@
                                 </constraints>
                                 <state key="normal" image="SearchButton.png"/>
                                 <connections>
-                                    <segue destination="8nq-on-6qw" kind="show" id="0Ke-N4-kcC"/>
+                                    <action selector="btnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DCX-6B-w5H"/>
+                                    <segue destination="8nq-on-6qw" kind="show" identifier="showResults" id="0Ke-N4-kcC"/>
                                 </connections>
                             </button>
                         </subviews>

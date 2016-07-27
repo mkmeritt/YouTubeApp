@@ -11,7 +11,7 @@
 #import "YouTubeLayout.h"
 #import "VideoCell.h"
 
-@interface YoutubeViewController () <YTPlayerViewDelegate>
+@interface YoutubeViewController () <YTPlayerViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *videoArray;
 @property (nonatomic, strong) YouTubeLayout *youTubeLayout;
@@ -33,16 +33,14 @@
     
     [self.collectionView setCollectionViewLayout:self.youTubeLayout animated:YES];
     
+    NSLog(@"Mood is: %@", self.selectedMood);
+    
+    self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    
 //    [self.playerView loadVideoById:@"UCE_M8A5yxnLfW0KghEeajjw" startSeconds:1 suggestedQuality:4];
-    
-    
-    
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 /*
 #pragma mark - Navigation
@@ -53,6 +51,23 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+/////TOUCH EVENTS
+-(void)prepareGestureRecoginzers{
+    [self prepareSwipeGestureRecognizers];
+}
+
+-(void)handleTapGesture:(UITapGestureRecognizer *)sender{
+    
+}
+
+-(void)prepareSwipeGestureRecognizers{
+    
+}
+
+-(void)swiped:(UISwipeGestureRecognizer*) recognizer{
+    
+}
 
 #pragma mark - API Initiation
 
