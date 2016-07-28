@@ -10,25 +10,31 @@
 #import "ViewController.h"  
 #import "AppDelegate.h"
 #import "YTPlayerView.h"
-<<<<<<< HEAD
 #import "Video.h"
-=======
 #import "YouTubeLayout.h"
 #import "VideoCell.h"
->>>>>>> 6003ba20da88162dcad4cc0eb95a4df71b1c8995
 
 @interface YoutubeViewController () <YTPlayerViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) NSMutableDictionary *videoDictionary;
 
-@property (nonatomic, strong) NSMutableArray *commentsArray;
-
-@property (nonatomic, strong) NSMutableArray *videoArray;
 @property (nonatomic, strong) YouTubeLayout *youTubeLayout;
 
 @property (nonatomic, strong) Video *video;
 
-@property (nonatomic, strong) AppDelegate *appDelegate;
+@property (nonatomic, strong) NSString *nextPageToken;
+
+@property (nonatomic, strong) NSString *urlString;
+@property (nonatomic, strong) NSString *baseHappyAPI;
+@property (nonatomic, strong) NSString *baseSadAPI;
+@property (nonatomic, strong) NSString *baseAdventurousAPI;
+@property (nonatomic, strong) NSString *baseFunnyAPI;
+@property (nonatomic, strong) NSString *baseSeriousAPI;
+@property (nonatomic, strong) NSString *baseSillyAPI;
+@property (nonatomic, strong) NSString *baseAngryAPI;
+
+@property (nonatomic, strong) NSArray *arrayOfVideos;
+@property (nonatomic, strong) NSMutableArray *videoArray;
 
 @end
 
@@ -37,30 +43,62 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    AppDelegate *appDelegate = [[AppDelegate alloc] init];
+    self.baseHappyAPI = @"https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=PkC0uQMGVUY&type=video&videoEmbeddable=true&order=relevance&key=AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4&maxResults=50&pageToken=";
     
-//    [appDelegate.managedObjectContext executeRequest:appDelegate.persistentStoreCoordinator error:(NSError * _Nullable __autoreleasing * _Nullable)];
+    self.baseSadAPI = @"https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=BTJH3CP23DI&type=video&videoEmbeddable=true&order=relevance&key=AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4&maxResults=50&pageToken=";
+    
+    self.baseAdventurousAPI = @"https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=-HH_uRgwEVY&type=video&videoEmbeddable=true&order=relevance&key=AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4&maxResults=50&pageToken=";
+    
+    self.baseFunnyAPI = @"https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=BTJH3CP23DI&type=video&videoEmbeddable=true&order=relevance&key=AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4&maxResults=50&pageToken=";
+    
+    self.baseSeriousAPI = @"https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=KrsSM0hCESI&type=video&videoEmbeddable=true&order=relevance&key=AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4&maxResults=50&pageToken=";
+    
+    self.baseSillyAPI = @"https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=1qgOCtciprY&type=video&videoEmbeddable=true&order=relevance&key=AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4&maxResults=50&pageToken=";
+    
+    self.baseAngryAPI = @"https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=_mWtWz_aGyk&type=video&videoEmbeddable=true&order=relevance&key=AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4&maxResults=50&pageToken=";
     
     //set player view parameters
     self.playerView.delegate = self;
     self.playerView.backgroundColor = [UIColor blackColor];
-    
-    //api request
-//    [self apiFetch];
-    [self apiCommentsFetch];
-    
-<<<<<<< HEAD
+
     //set and load video to player
     self.video = [self createVideo];
     [self videoID:self.video andID:@""];
-    [self.playerView loadWithVideoId:@"PQ4y2MNvJK0"];
-=======
+    [self.playerView loadWithVideoId:@"M8wNsBwEGJ4"];
     self.youTubeLayout = [[YouTubeLayout alloc] init];
->>>>>>> 6003ba20da88162dcad4cc0eb95a4df71b1c8995
     
     [self.collectionView setCollectionViewLayout:self.youTubeLayout animated:YES];
     
     NSLog(@"Mood is: %@", self.selectedMood);
+    
+    if ([self.selectedMood isEqualToString:@"happy"]) {
+        self.videoArray = [[NSMutableArray alloc] init];
+        [self apiHappy];
+    }
+         
+    if ([self.selectedMood isEqualToString:@"sad"]) {
+        [self apiSad];
+    }
+    
+    if ([self.selectedMood isEqualToString:@"adventourous"]) {
+        [self apiAdventurous];
+    }
+    
+    if ([self.selectedMood isEqualToString:@"funny"]) {
+        [self apiFunny];
+    }
+    
+    if ([self.selectedMood isEqualToString:@"serious"]) {
+        [self apiSerious];
+    }
+    
+    if ([self.selectedMood isEqualToString:@"silly"]) {
+        [self apiSilly];
+    }
+    
+    if ([self.selectedMood isEqualToString:@"angry"]) {
+        [self apiAngry];
+    }
     
     self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     
@@ -79,7 +117,6 @@
 }
 */
 
-<<<<<<< HEAD
 #pragma mark - AppDelegate Properties Access
 
 
@@ -93,9 +130,9 @@
 
 - (void)videoID:(Video *)video andID:(NSString *)videoID {
     video.videoID = videoID;
-=======
+}
 /////TOUCH EVENTS
--(void)prepareGestureRecoginzers{
+-(void)prepareGestureRecoginzers {
     [self prepareSwipeGestureRecognizers];
 }
 
@@ -109,109 +146,420 @@
 
 -(void)swiped:(UISwipeGestureRecognizer*) recognizer{
     
->>>>>>> 6003ba20da88162dcad4cc0eb95a4df71b1c8995
-}
 
-#pragma mark - API Initiation
-
-//- (NSURL *)URLforComment {
-//    NSString *commentAPI = @"https://www.googleapis.com/youtube/v3/commentThread?
-//}
-
-- (NSURL *)URLforCommentThread {
-    NSString *apiKey = @"AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4";
-    NSString *urlOne = @"https://www.googleapis.com/youtube/v3/commentThread?";
-    NSString *part = @"part=videoID&textFormat&key=";
-    NSString *appended = [NSString stringWithFormat:@"%@%@%@", urlOne, part, apiKey];
-    NSURL *URL = [NSURL URLWithString:appended];
-    return URL;
-}
-
-- (NSURL *)URLforVideo {
-    NSString *apiKey = @"AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4";
-    NSString *urlOne = @"https://www.googleapis.com/youtube/v3/videos?";
-    NSString *part = @"part=contentDetails&chart=mostPopular&key=";
-    NSString *appended = [NSString stringWithFormat:@"%@%@%@", urlOne, part, apiKey];
-    NSURL *URL = [NSURL URLWithString:appended];
-    return URL;
 }
  
-#pragma mark - API Request
+#pragma mark - API Happy
 
-- (void)apiCommentsFetch {
+- (void)apiHappy {
+
+    if (!self.urlString) {
+        self.urlString = self.baseHappyAPI;
+    }
     
-    NSString *urlString = @"https://www.googleapis.com/youtube/v3/search?&part=snippet&q=happy&type=video&videoEmbeddable=true&order=relevance&key=AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4&pageToken=CAUQAA";
-    NSURL *url = [NSURL URLWithString:urlString];
-
+    NSURL *url = [NSURL URLWithString:self.urlString];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     NSURLSession *sharedSession = [NSURLSession sharedSession];
-
     NSURLSessionDataTask *dataTask = [sharedSession dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-    
-    NSLog(@"Request Done");
-    
-    if (!error) {
-        
-        NSError *jsonError;
-        
-        NSDictionary *videosListing = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
-        
-        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-        
-        if (!jsonError) {
-            
-//            NSLog(@"Data: %@", data);
-            [self logJSONData:videosListing];
-            
-            for (NSDictionary *properties in videosListing[@"items"]) {
-                if ([properties isKindOfClass:[NSDictionary class]]) {
-                    Video *video = [[Video alloc] init];
-                    NSString *imageString = properties[@"snippet"][@"thumbnails"][@"default"][@"url"];
-                    NSURL *urlImage = [NSURL URLWithString:imageString];
-                    NSData *imageData = [NSData dataWithContentsOfURL:urlImage];
-                    video.videoThumbnail = [UIImage imageWithData:imageData];
-                    video.videoID = properties[@"id"][@"videoId"];
-                    [tempArray addObject:video];
+        if (!error) {
+            NSError *jsonError;
+            NSDictionary *videosListing = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+            NSString *pageTokenString;
+            NSMutableArray *tempArray = [NSMutableArray array];
+            if (!jsonError) {
+                if ([videosListing[@"nextPageToken"] isKindOfClass:[NSString class]]) {
+                    pageTokenString = [NSString stringWithFormat:@"%@", videosListing[@"nextPageToken"]];
+                    self.nextPageToken = pageTokenString;
+                }
+                
+                for (NSDictionary *properties in videosListing[@"items"]) {
+                    if ([properties isKindOfClass:[NSDictionary class]]) {
+                        Video *video = [[Video alloc] init];
+                        NSString *imageString = properties[@"snippet"][@"thumbnails"][@"high"][@"url"];
+                        NSURL *urlImage = [NSURL URLWithString:imageString];
+                        NSData *imageData = [NSData dataWithContentsOfURL:urlImage];
+                        video.videoThumbnail = [UIImage imageWithData:imageData];
+                        video.videoID = properties[@"id"][@"videoId"];
+                        [tempArray addObject:video];
+                        self.arrayOfVideos = tempArray;
+                    }
                 }
             }
+            [self.videoArray addObjectsFromArray:self.arrayOfVideos];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if (self.videoArray.count < 250) {
+                    self.urlString = [NSString stringWithFormat:@"%@%@", self.baseHappyAPI, self.nextPageToken];
+                    NSLog(@"%@", self.urlString);
+                    [self apiHappy];
+                }
+                else {
+                    NSLog(@"done");
+                }
+                self.title = [NSString stringWithFormat:@"Your Moody Videos"];
+                //                [self.collectionView reloadData];
+            });
         }
         else {
-            NSLog(@"NO");
+            NSLog(@"Request error: %@", error.localizedDescription);
         }
-        
-        self.videoArray = tempArray;
-        
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.title = [NSString stringWithFormat:@"Your Moody Videos"];
-//                [self.collectionView reloadData];
-            });
-    }
-    else {
-        NSLog(@"Request error: %@", error.localizedDescription);
+    }];
+    [dataTask resume];
+}
+
+#pragma mark - API Sad
+
+- (void)apiSad {
+    
+    
+    if (!self.urlString) {
+        self.urlString = self.baseSadAPI;
     }
     
-}];
-
-[dataTask resume];
-
+    NSURL *url = [NSURL URLWithString:self.urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    NSURLSession *sharedSession = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [sharedSession dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            NSError *jsonError;
+            NSDictionary *videosListing = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+            NSString *pageTokenString;
+            NSMutableArray *tempArray = [NSMutableArray array];
+            if (!jsonError) {
+                if ([videosListing[@"nextPageToken"] isKindOfClass:[NSString class]]) {
+                    pageTokenString = [NSString stringWithFormat:@"%@", videosListing[@"nextPageToken"]];
+                    self.nextPageToken = pageTokenString;
+                }
+                
+                for (NSDictionary *properties in videosListing[@"items"]) {
+                    if ([properties isKindOfClass:[NSDictionary class]]) {
+                        Video *video = [[Video alloc] init];
+                        NSString *imageString = properties[@"snippet"][@"thumbnails"][@"high"][@"url"];
+                        NSURL *urlImage = [NSURL URLWithString:imageString];
+                        NSData *imageData = [NSData dataWithContentsOfURL:urlImage];
+                        video.videoThumbnail = [UIImage imageWithData:imageData];
+                        video.videoID = properties[@"id"][@"videoId"];
+                        [tempArray addObject:video];
+                        self.arrayOfVideos = tempArray;
+                    }
+                }
+            }
+            [self.videoArray addObjectsFromArray:self.arrayOfVideos];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if (self.videoArray.count < 250) {
+                    self.urlString = [NSString stringWithFormat:@"%@%@", self.baseSadAPI, self.nextPageToken];
+                    NSLog(@"%@", self.urlString);
+                    [self apiSad];
+                }
+                else {
+                    NSLog(@"done");
+                }
+                self.title = [NSString stringWithFormat:@"Your Moody Videos"];
+                //                [self.collectionView reloadData];
+            });
+        }
+        else {
+            NSLog(@"Request error: %@", error.localizedDescription);
+        }
+    }];
+    [dataTask resume];
 }
 
-<<<<<<< HEAD
-- (NSString *)searchParameters {
-    return @"";
+#pragma mark - API Adventurous
+
+- (void)apiAdventurous {
+    
+    
+    if (!self.urlString) {
+        self.urlString = self.baseAdventurousAPI;
+    }
+    
+    NSURL *url = [NSURL URLWithString:self.urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    NSURLSession *sharedSession = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [sharedSession dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            NSError *jsonError;
+            NSDictionary *videosListing = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+            NSString *pageTokenString;
+            NSMutableArray *tempArray = [NSMutableArray array];
+            if (!jsonError) {
+                if ([videosListing[@"nextPageToken"] isKindOfClass:[NSString class]]) {
+                    pageTokenString = [NSString stringWithFormat:@"%@", videosListing[@"nextPageToken"]];
+                    self.nextPageToken = pageTokenString;
+                }
+                
+                for (NSDictionary *properties in videosListing[@"items"]) {
+                    if ([properties isKindOfClass:[NSDictionary class]]) {
+                        Video *video = [[Video alloc] init];
+                        NSString *imageString = properties[@"snippet"][@"thumbnails"][@"high"][@"url"];
+                        NSURL *urlImage = [NSURL URLWithString:imageString];
+                        NSData *imageData = [NSData dataWithContentsOfURL:urlImage];
+                        video.videoThumbnail = [UIImage imageWithData:imageData];
+                        video.videoID = properties[@"id"][@"videoId"];
+                        [tempArray addObject:video];
+                        self.arrayOfVideos = tempArray;
+                    }
+                }
+            }
+            [self.videoArray addObjectsFromArray:self.arrayOfVideos];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if (self.videoArray.count < 250) {
+                    self.urlString = [NSString stringWithFormat:@"%@%@", self.baseAdventurousAPI, self.nextPageToken];
+                    NSLog(@"%@", self.urlString);
+                    [self apiAdventurous];
+                }
+                else {
+                    NSLog(@"done");
+                }
+                self.title = [NSString stringWithFormat:@"Your Moody Videos"];
+                //                [self.collectionView reloadData];
+            });
+        }
+        else {
+            NSLog(@"Request error: %@", error.localizedDescription);
+        }
+    }];
+    [dataTask resume];
 }
 
-- (void)searchString {
-    ViewController *viewController = [[ViewController alloc] init];
-    NSString *searchParameters = @"Joyful, ";
+#pragma mark - API Funny
+
+- (void)apiFunny {
+    
+    
+    if (!self.urlString) {
+        self.urlString = self.baseFunnyAPI;
+    }
+    
+    NSURL *url = [NSURL URLWithString:self.urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    NSURLSession *sharedSession = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [sharedSession dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            NSError *jsonError;
+            NSDictionary *videosListing = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+            NSString *pageTokenString;
+            NSMutableArray *tempArray = [NSMutableArray array];
+            if (!jsonError) {
+                if ([videosListing[@"nextPageToken"] isKindOfClass:[NSString class]]) {
+                    pageTokenString = [NSString stringWithFormat:@"%@", videosListing[@"nextPageToken"]];
+                    self.nextPageToken = pageTokenString;
+                }
+                
+                for (NSDictionary *properties in videosListing[@"items"]) {
+                    if ([properties isKindOfClass:[NSDictionary class]]) {
+                        Video *video = [[Video alloc] init];
+                        NSString *imageString = properties[@"snippet"][@"thumbnails"][@"high"][@"url"];
+                        NSURL *urlImage = [NSURL URLWithString:imageString];
+                        NSData *imageData = [NSData dataWithContentsOfURL:urlImage];
+                        video.videoThumbnail = [UIImage imageWithData:imageData];
+                        video.videoID = properties[@"id"][@"videoId"];
+                        [tempArray addObject:video];
+                        self.arrayOfVideos = tempArray;
+                    }
+                }
+            }
+            [self.videoArray addObjectsFromArray:self.arrayOfVideos];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if (self.videoArray.count < 250) {
+                    self.urlString = [NSString stringWithFormat:@"%@%@", self.baseFunnyAPI, self.nextPageToken];
+                    NSLog(@"%@", self.urlString);
+                    [self apiFunny];
+                }
+                else {
+                    NSLog(@"done");
+                }
+                self.title = [NSString stringWithFormat:@"Your Moody Videos"];
+                //                [self.collectionView reloadData];
+            });
+        }
+        else {
+            NSLog(@"Request error: %@", error.localizedDescription);
+        }
+    }];
+    [dataTask resume];
 }
 
-- (void)logJSONData:(NSDictionary *)list {
-    NSLog(@"JSON: %@", list);
+#pragma mark - API Serious
+
+- (void)apiSerious {
+    
+    if (!self.urlString) {
+        self.urlString = self.baseSeriousAPI;
+    }
+    
+    NSURL *url = [NSURL URLWithString:self.urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    NSURLSession *sharedSession = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [sharedSession dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            NSError *jsonError;
+            NSDictionary *videosListing = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+            NSString *pageTokenString;
+            NSMutableArray *tempArray = [NSMutableArray array];
+            if (!jsonError) {
+                if ([videosListing[@"nextPageToken"] isKindOfClass:[NSString class]]) {
+                    pageTokenString = [NSString stringWithFormat:@"%@", videosListing[@"nextPageToken"]];
+                    self.nextPageToken = pageTokenString;
+                }
+                
+                for (NSDictionary *properties in videosListing[@"items"]) {
+                    if ([properties isKindOfClass:[NSDictionary class]]) {
+                        Video *video = [[Video alloc] init];
+                        NSString *imageString = properties[@"snippet"][@"thumbnails"][@"high"][@"url"];
+                        NSURL *urlImage = [NSURL URLWithString:imageString];
+                        NSData *imageData = [NSData dataWithContentsOfURL:urlImage];
+                        video.videoThumbnail = [UIImage imageWithData:imageData];
+                        video.videoID = properties[@"id"][@"videoId"];
+                        [tempArray addObject:video];
+                        self.arrayOfVideos = tempArray;
+                    }
+                }
+            }
+            [self.videoArray addObjectsFromArray:self.arrayOfVideos];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if (self.videoArray.count < 250) {
+                    self.urlString = [NSString stringWithFormat:@"%@%@", self.baseSeriousAPI, self.nextPageToken];
+                    NSLog(@"%@", self.urlString);
+                    [self apiSerious];
+                }
+                else {
+                    NSLog(@"done");
+                }
+                self.title = [NSString stringWithFormat:@"Your Moody Videos"];
+                //                [self.collectionView reloadData];
+            });
+        }
+        else {
+            NSLog(@"Request error: %@", error.localizedDescription);
+        }
+    }];
+    [dataTask resume];
+}
+
+#pragma mark - API Silly
+
+- (void)apiSilly {
+    
+    if (!self.urlString) {
+        self.urlString = self.baseSeriousAPI;
+    }
+    
+    NSURL *url = [NSURL URLWithString:self.urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    NSURLSession *sharedSession = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [sharedSession dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            NSError *jsonError;
+            NSDictionary *videosListing = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+            NSString *pageTokenString;
+            NSMutableArray *tempArray = [NSMutableArray array];
+            if (!jsonError) {
+                if ([videosListing[@"nextPageToken"] isKindOfClass:[NSString class]]) {
+                    pageTokenString = [NSString stringWithFormat:@"%@", videosListing[@"nextPageToken"]];
+                    self.nextPageToken = pageTokenString;
+                }
+                
+                for (NSDictionary *properties in videosListing[@"items"]) {
+                    if ([properties isKindOfClass:[NSDictionary class]]) {
+                        Video *video = [[Video alloc] init];
+                        NSString *imageString = properties[@"snippet"][@"thumbnails"][@"high"][@"url"];
+                        NSURL *urlImage = [NSURL URLWithString:imageString];
+                        NSData *imageData = [NSData dataWithContentsOfURL:urlImage];
+                        video.videoThumbnail = [UIImage imageWithData:imageData];
+                        video.videoID = properties[@"id"][@"videoId"];
+                        [tempArray addObject:video];
+                        self.arrayOfVideos = tempArray;
+                    }
+                }
+            }
+            [self.videoArray addObjectsFromArray:self.arrayOfVideos];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if (self.videoArray.count < 250) {
+                    self.urlString = [NSString stringWithFormat:@"%@%@", self.baseSeriousAPI, self.nextPageToken];
+                    NSLog(@"%@", self.urlString);
+                    [self apiSerious];
+                }
+                else {
+                    NSLog(@"done");
+                }
+                self.title = [NSString stringWithFormat:@"Your Moody Videos"];
+                //                [self.collectionView reloadData];
+            });
+        }
+        else {
+            NSLog(@"Request error: %@", error.localizedDescription);
+        }
+    }];
+    [dataTask resume];
+}
+
+#pragma mark - Angry API
+
+- (void)apiAngry {
+    
+    if (!self.urlString) {
+        self.urlString = self.baseSeriousAPI;
+    }
+    
+    NSURL *url = [NSURL URLWithString:self.urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    NSURLSession *sharedSession = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [sharedSession dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (!error) {
+            NSError *jsonError;
+            NSDictionary *videosListing = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+            NSString *pageTokenString;
+            NSMutableArray *tempArray = [NSMutableArray array];
+            if (!jsonError) {
+                if ([videosListing[@"nextPageToken"] isKindOfClass:[NSString class]]) {
+                    pageTokenString = [NSString stringWithFormat:@"%@", videosListing[@"nextPageToken"]];
+                    self.nextPageToken = pageTokenString;
+                }
+                
+                for (NSDictionary *properties in videosListing[@"items"]) {
+                    if ([properties isKindOfClass:[NSDictionary class]]) {
+                        Video *video = [[Video alloc] init];
+                        NSString *imageString = properties[@"snippet"][@"thumbnails"][@"high"][@"url"];
+                        NSURL *urlImage = [NSURL URLWithString:imageString];
+                        NSData *imageData = [NSData dataWithContentsOfURL:urlImage];
+                        video.videoThumbnail = [UIImage imageWithData:imageData];
+                        video.videoID = properties[@"id"][@"videoId"];
+                        [tempArray addObject:video];
+                        self.arrayOfVideos = tempArray;
+                    }
+                }
+            }
+            [self.videoArray addObjectsFromArray:self.arrayOfVideos];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if (self.videoArray.count < 250) {
+                    self.urlString = [NSString stringWithFormat:@"%@%@", self.baseSeriousAPI, self.nextPageToken];
+                    NSLog(@"%@", self.urlString);
+                    [self apiSerious];
+                }
+                else {
+                    NSLog(@"done");
+                }
+                self.title = [NSString stringWithFormat:@"Your Moody Videos"];
+                //                [self.collectionView reloadData];
+            });
+        }
+        else {
+            NSLog(@"Request error: %@", error.localizedDescription);
+        }
+    }];
+    [dataTask resume];
 }
 
 #pragma mark - API results 
-=======
+
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
 }
@@ -227,8 +575,6 @@
     return cell;
     
 }
-
->>>>>>> 6003ba20da88162dcad4cc0eb95a4df71b1c8995
 
 - (void)videoIDs {
     
