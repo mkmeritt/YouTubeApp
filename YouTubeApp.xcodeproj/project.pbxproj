@@ -30,6 +30,12 @@
 		666D82F61D469B4800A8C714 /* UserProfile+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 666D82F31D469B4800A8C714 /* UserProfile+CoreDataProperties.m */; };
 		666D82F71D469B4800A8C714 /* UserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 666D82F51D469B4800A8C714 /* UserProfile.m */; };
 		666D82FE1D46C96000A8C714 /* MoodsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 666D82FD1D46C96000A8C714 /* MoodsDataSource.m */; };
+		66A1EDC21D497E0800EC4BA3 /* youtube blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1EDBC1D497E0800EC4BA3 /* youtube blue.png */; };
+		66A1EDC31D497E0800EC4BA3 /* youtube green.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1EDBD1D497E0800EC4BA3 /* youtube green.png */; };
+		66A1EDC41D497E0800EC4BA3 /* youtube magenta.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1EDBE1D497E0800EC4BA3 /* youtube magenta.png */; };
+		66A1EDC51D497E0800EC4BA3 /* youtube orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1EDBF1D497E0800EC4BA3 /* youtube orange.png */; };
+		66A1EDC61D497E0800EC4BA3 /* youtube pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1EDC01D497E0800EC4BA3 /* youtube pink.png */; };
+		66A1EDC71D497E0800EC4BA3 /* youtube yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1EDC11D497E0800EC4BA3 /* youtube yellow.png */; };
 		92C29E2B1D47DB5F0074A951 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C29E2A1D47DB5F0074A951 /* Video.m */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +74,12 @@
 		666D82F51D469B4800A8C714 /* UserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfile.m; path = ../UserProfile.m; sourceTree = "<group>"; };
 		666D82FC1D46C96000A8C714 /* MoodsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoodsDataSource.h; path = ../../YoutubeApp/YouTubeApp/MoodsDataSource.h; sourceTree = "<group>"; };
 		666D82FD1D46C96000A8C714 /* MoodsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoodsDataSource.m; path = ../../YoutubeApp/YouTubeApp/MoodsDataSource.m; sourceTree = "<group>"; };
+		66A1EDBC1D497E0800EC4BA3 /* youtube blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube blue.png"; sourceTree = "<group>"; };
+		66A1EDBD1D497E0800EC4BA3 /* youtube green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube green.png"; sourceTree = "<group>"; };
+		66A1EDBE1D497E0800EC4BA3 /* youtube magenta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube magenta.png"; sourceTree = "<group>"; };
+		66A1EDBF1D497E0800EC4BA3 /* youtube orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube orange.png"; sourceTree = "<group>"; };
+		66A1EDC01D497E0800EC4BA3 /* youtube pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube pink.png"; sourceTree = "<group>"; };
+		66A1EDC11D497E0800EC4BA3 /* youtube yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube yellow.png"; sourceTree = "<group>"; };
 		92C29E291D47DB5F0074A951 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
 		92C29E2A1D47DB5F0074A951 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
 		B0EE6324F67E088656A0CCC9 /* libPods-YouTubeApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YouTubeApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +188,12 @@
 		666D82FB1D469B6100A8C714 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				66A1EDBC1D497E0800EC4BA3 /* youtube blue.png */,
+				66A1EDBD1D497E0800EC4BA3 /* youtube green.png */,
+				66A1EDBE1D497E0800EC4BA3 /* youtube magenta.png */,
+				66A1EDBF1D497E0800EC4BA3 /* youtube orange.png */,
+				66A1EDC01D497E0800EC4BA3 /* youtube pink.png */,
+				66A1EDC11D497E0800EC4BA3 /* youtube yellow.png */,
 				6657DE391D47A8130002E818 /* How are you feeling..png */,
 				6657DE361D47A79C0002E818 /* settings.png */,
 				666D82D31D46966500A8C714 /* AppDelegate.h */,
@@ -260,9 +278,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66A1EDC61D497E0800EC4BA3 /* youtube pink.png in Resources */,
+				66A1EDC31D497E0800EC4BA3 /* youtube green.png in Resources */,
 				6657DE3B1D47A8130002E818 /* How are you feeling..png in Resources */,
+				66A1EDC21D497E0800EC4BA3 /* youtube blue.png in Resources */,
 				6657DE421D47E60F0002E818 /* SearchButton.png in Resources */,
 				6657DE371D47A79C0002E818 /* settings.png in Resources */,
+				66A1EDC71D497E0800EC4BA3 /* youtube yellow.png in Resources */,
 				666D82E31D46966600A8C714 /* LaunchScreen.storyboard in Resources */,
 				666D82EF1D4697F600A8C714 /* button.png in Resources */,
 				666D82F11D4697F600A8C714 /* youtube.png in Resources */,
@@ -272,6 +294,8 @@
 				666D82F01D4697F600A8C714 /* textbox.png in Resources */,
 				6657DE3A1D47A8130002E818 /* Effects.png in Resources */,
 				666D82DB1D46966500A8C714 /* Main.storyboard in Resources */,
+				66A1EDC41D497E0800EC4BA3 /* youtube magenta.png in Resources */,
+				66A1EDC51D497E0800EC4BA3 /* youtube orange.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

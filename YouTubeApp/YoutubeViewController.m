@@ -40,6 +40,9 @@
 
 @implementation YoutubeViewController
 
+
+//UIImage* videoImage;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -65,9 +68,18 @@
     self.video = [self createVideo];
     [self videoID:self.video andID:@""];
     [self.playerView loadWithVideoId:@"M8wNsBwEGJ4"];
+    
+    //api request
+//    [self apiFetch];
+  //  [self apiCommentsFetch];
+    
+    //set and load video to player
+    self.video = [self createVideo];
+    [self videoID:self.video andID:@""];
+    [self.playerView loadWithVideoId:@"PQ4y2MNvJK0"];
     self.youTubeLayout = [[YouTubeLayout alloc] init];
     
-    [self.collectionView setCollectionViewLayout:self.youTubeLayout animated:YES];
+   // [self.collectionView setCollectionViewLayout:self.youTubeLayout animated:YES];
     
     NSLog(@"Mood is: %@", self.selectedMood);
     
@@ -145,7 +157,6 @@
 }
 
 -(void)swiped:(UISwipeGestureRecognizer*) recognizer{
-    
 
 }
  
@@ -211,7 +222,6 @@
 
 - (void)apiSad {
     
-    
     if (!self.urlString) {
         self.urlString = self.baseSadAPI;
     }
@@ -256,7 +266,7 @@
                     NSLog(@"done");
                 }
                 self.title = [NSString stringWithFormat:@"Your Moody Videos"];
-                //                [self.collectionView reloadData];
+                [self.collectionView reloadData];
             });
         }
         else {
@@ -315,7 +325,8 @@
                     NSLog(@"done");
                 }
                 self.title = [NSString stringWithFormat:@"Your Moody Videos"];
-                //                [self.collectionView reloadData];
+                [self.collectionView reloadData];
+
             });
         }
         else {
@@ -565,12 +576,18 @@
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{  //NUMBER OF ITEMS FETCHED
-    return 2;
+    return self.videoArray.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    
+    
     VideoCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"VideoCell" forIndexPath:indexPath];
+    
+    Video* video = [self.videoArray objectAtIndex:indexPath.item];
+    
+    cell.imageView.image = video.videoThumbnail;
     
     return cell;
     
