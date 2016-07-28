@@ -13,7 +13,7 @@
 -(instancetype)init{
     
     if(self = [super init]){
-    _moods = @[@"happy", @"sad", @"adventourous", @"funny", @"serious"];
+    _moods = @[@"happy", @"sad", @"adventerous", @"funny", @"serious", @"silly", @"angry"];
     }
     
     return self;

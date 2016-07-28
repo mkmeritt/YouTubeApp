@@ -12,6 +12,7 @@
 
 @interface ViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UIImageView *youTubeImg;
 
 - (IBAction)btnPressed:(id)sender;
 

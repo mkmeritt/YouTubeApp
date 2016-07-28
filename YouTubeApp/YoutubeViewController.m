@@ -10,12 +10,9 @@
 #import "ViewController.h"  
 #import "AppDelegate.h"
 #import "YTPlayerView.h"
-<<<<<<< HEAD
 #import "Video.h"
-=======
 #import "YouTubeLayout.h"
 #import "VideoCell.h"
->>>>>>> 6003ba20da88162dcad4cc0eb95a4df71b1c8995
 
 @interface YoutubeViewController () <YTPlayerViewDelegate, UIGestureRecognizerDelegate>
 
@@ -34,6 +31,9 @@
 
 @implementation YoutubeViewController
 
+
+//UIImage* videoImage;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -47,18 +47,15 @@
     
     //api request
 //    [self apiFetch];
-    [self apiCommentsFetch];
+  //  [self apiCommentsFetch];
     
-<<<<<<< HEAD
     //set and load video to player
     self.video = [self createVideo];
     [self videoID:self.video andID:@""];
     [self.playerView loadWithVideoId:@"PQ4y2MNvJK0"];
-=======
     self.youTubeLayout = [[YouTubeLayout alloc] init];
->>>>>>> 6003ba20da88162dcad4cc0eb95a4df71b1c8995
     
-    [self.collectionView setCollectionViewLayout:self.youTubeLayout animated:YES];
+   // [self.collectionView setCollectionViewLayout:self.youTubeLayout animated:YES];
     
     NSLog(@"Mood is: %@", self.selectedMood);
     
@@ -79,7 +76,6 @@
 }
 */
 
-<<<<<<< HEAD
 #pragma mark - AppDelegate Properties Access
 
 
@@ -93,7 +89,7 @@
 
 - (void)videoID:(Video *)video andID:(NSString *)videoID {
     video.videoID = videoID;
-=======
+}
 /////TOUCH EVENTS
 -(void)prepareGestureRecoginzers{
     [self prepareSwipeGestureRecognizers];
@@ -109,7 +105,6 @@
 
 -(void)swiped:(UISwipeGestureRecognizer*) recognizer{
     
->>>>>>> 6003ba20da88162dcad4cc0eb95a4df71b1c8995
 }
 
 #pragma mark - API Initiation
@@ -140,7 +135,7 @@
 
 - (void)apiCommentsFetch {
     
-    NSString *urlString = @"https://www.googleapis.com/youtube/v3/search?&part=snippet&q=happy&type=video&videoEmbeddable=true&order=relevance&key=AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4&pageToken=CAUQAA";
+    NSString *urlString = @"https://www.googleapis.com/youtube/v3/search?&part=snippet&q=happy&type=video&videoEmbeddable=true&order=relevance&key=AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4&maxResults=50&pageToken=CAUQAA";
     NSURL *url = [NSURL URLWithString:urlString];
 
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
@@ -166,7 +161,7 @@
             for (NSDictionary *properties in videosListing[@"items"]) {
                 if ([properties isKindOfClass:[NSDictionary class]]) {
                     Video *video = [[Video alloc] init];
-                    NSString *imageString = properties[@"snippet"][@"thumbnails"][@"default"][@"url"];
+                    NSString *imageString = properties[@"snippet"][@"thumbnails"][@"high"][@"url"];
                     NSURL *urlImage = [NSURL URLWithString:imageString];
                     NSData *imageData = [NSData dataWithContentsOfURL:urlImage];
                     video.videoThumbnail = [UIImage imageWithData:imageData];
@@ -183,7 +178,7 @@
         
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.title = [NSString stringWithFormat:@"Your Moody Videos"];
-//                [self.collectionView reloadData];
+                [self.collectionView reloadData];
             });
     }
     else {
@@ -191,12 +186,13 @@
     }
     
 }];
+    
+  //  videoImage = self.video.videoThumbnail;
 
 [dataTask resume];
 
 }
 
-<<<<<<< HEAD
 - (NSString *)searchParameters {
     return @"";
 }
@@ -211,24 +207,29 @@
 }
 
 #pragma mark - API results 
-=======
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{  //NUMBER OF ITEMS FETCHED
-    return 2;
+    [self apiCommentsFetch];
+    return self.videoArray.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    
+    
     VideoCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"VideoCell" forIndexPath:indexPath];
+    
+    Video* video = [self.videoArray objectAtIndex:indexPath.item];
+    
+    cell.imageView.image = video.videoThumbnail;
     
     return cell;
     
 }
 
->>>>>>> 6003ba20da88162dcad4cc0eb95a4df71b1c8995
 
 - (void)videoIDs {
     

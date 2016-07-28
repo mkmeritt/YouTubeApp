@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) IBOutlet YTPlayerView *playerView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (strong, nonatomic) NSString* selectedMood;
+@property (strong, nonatomic) NSString* selectedMood;  ///
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 @property (nonatomic, strong) UISwipeGestureRecognizer *swipeGesture;

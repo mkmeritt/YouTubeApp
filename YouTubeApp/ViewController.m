@@ -46,6 +46,33 @@ MoodsDataSource* moods;
     
     self.moodString = [moods.moods objectAtIndex:row];
     
+    if([self.moodString isEqualToString:@"happy"]){
+        self.youTubeImg.image = [UIImage imageNamed:@"youtube"];
+    }
+    
+    if([self.moodString isEqualToString:@"sad"]){
+        self.youTubeImg.image = [UIImage imageNamed:@"youtube blue"];
+    }
+    
+    if([self.moodString isEqualToString:@"adventerous"]){
+        self.youTubeImg.image = [UIImage imageNamed:@"youtube green"];
+    }
+    
+    if([self.moodString isEqualToString:@"funny"]){
+        self.youTubeImg.image = [UIImage imageNamed:@"youtube orange"];
+    }
+    
+    if([self.moodString isEqualToString:@"serious"]){
+        self.youTubeImg.image = [UIImage imageNamed:@"youtube pink"];
+    }
+    
+    if([self.moodString isEqualToString:@"silly"]){
+        self.youTubeImg.image = [UIImage imageNamed:@"youtube yellow"];
+    }
+    
+    if([self.moodString isEqualToString:@"angry"]){
+        self.youTubeImg.image = [UIImage imageNamed:@"youtube magenta"];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
