@@ -52,9 +52,9 @@
     
     self.baseAdventurousAPI = @"https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=-HH_uRgwEVY&type=video&videoEmbeddable=true&order=relevance&key=AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4&maxResults=50&pageToken=";
     
-    self.baseFunnyAPI = @"https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=BTJH3CP23DI&type=video&videoEmbeddable=true&order=relevance&key=AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4&maxResults=50&pageToken=";
+    self.baseFunnyAPI = @"https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=UC2v8J0Krmc&type=video&videoEmbeddable=true&order=relevance&key=AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4&maxResults=50&pageToken=";
     
-    self.baseSeriousAPI = @"https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=KrsSM0hCESI&type=video&videoEmbeddable=true&order=relevance&key=AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4&maxResults=50&pageToken=";
+    self.baseSeriousAPI = @"https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=v1RmX6E0FZA&type=video&videoEmbeddable=true&order=relevance&key=AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4&maxResults=50&pageToken=";
     
     self.baseSillyAPI = @"https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=1qgOCtciprY&type=video&videoEmbeddable=true&order=relevance&key=AIzaSyCK8NV2bi5TPJ3-wa60C5vEqQMGEx8CQP4&maxResults=50&pageToken=";
     
@@ -391,7 +391,7 @@
                     NSLog(@"done");
                 }
                 self.title = [NSString stringWithFormat:@"Your Moody Videos"];
-                //                [self.collectionView reloadData];
+                [self.collectionView reloadData];
             });
         }
         else {
@@ -449,7 +449,7 @@
                     NSLog(@"done");
                 }
                 self.title = [NSString stringWithFormat:@"Your Moody Videos"];
-                //                [self.collectionView reloadData];
+                [self.collectionView reloadData];
             });
         }
         else {
@@ -501,7 +501,7 @@
                 if (self.videoArray.count < 250) {
                     self.urlString = [NSString stringWithFormat:@"%@%@", self.baseSillyAPI, self.nextPageToken];
                     NSLog(@"%@", self.urlString);
-                    [self apiSerious];
+                    [self apiSilly];
                 }
                 else {
                     NSLog(@"done");
@@ -559,7 +559,7 @@
                 if (self.videoArray.count < 250) {
                     self.urlString = [NSString stringWithFormat:@"%@%@", self.baseAngryAPI, self.nextPageToken];
                     NSLog(@"%@", self.urlString);
-                    [self apiSerious];
+                    [self apiAngry];
                 }
                 else {
                     NSLog(@"done");
