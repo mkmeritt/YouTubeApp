@@ -464,7 +464,7 @@
 - (void)apiSilly {
     
     if (!self.urlString) {
-        self.urlString = self.baseSeriousAPI;
+        self.urlString = self.baseSillyAPI;
     }
     
     NSURL *url = [NSURL URLWithString:self.urlString];
@@ -499,7 +499,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 if (self.videoArray.count < 250) {
-                    self.urlString = [NSString stringWithFormat:@"%@%@", self.baseSeriousAPI, self.nextPageToken];
+                    self.urlString = [NSString stringWithFormat:@"%@%@", self.baseSillyAPI, self.nextPageToken];
                     NSLog(@"%@", self.urlString);
                     [self apiSerious];
                 }
@@ -522,7 +522,7 @@
 - (void)apiAngry {
     
     if (!self.urlString) {
-        self.urlString = self.baseSeriousAPI;
+        self.urlString = self.baseAngryAPI;
     }
     
     NSURL *url = [NSURL URLWithString:self.urlString];
@@ -557,7 +557,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 if (self.videoArray.count < 250) {
-                    self.urlString = [NSString stringWithFormat:@"%@%@", self.baseSeriousAPI, self.nextPageToken];
+                    self.urlString = [NSString stringWithFormat:@"%@%@", self.baseAngryAPI, self.nextPageToken];
                     NSLog(@"%@", self.urlString);
                     [self apiSerious];
                 }
