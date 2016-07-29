@@ -89,26 +89,32 @@
     }
          
     if ([self.selectedMood isEqualToString:@"sad"]) {
+        self.videoArray = [[NSMutableArray alloc] init];
         [self apiSad];
     }
     
     if ([self.selectedMood isEqualToString:@"adventourous"]) {
+        self.videoArray = [[NSMutableArray alloc] init];
         [self apiAdventurous];
     }
     
     if ([self.selectedMood isEqualToString:@"funny"]) {
+        self.videoArray = [[NSMutableArray alloc] init];
         [self apiFunny];
     }
     
     if ([self.selectedMood isEqualToString:@"serious"]) {
+        self.videoArray = [[NSMutableArray alloc] init];
         [self apiSerious];
     }
     
     if ([self.selectedMood isEqualToString:@"silly"]) {
+        self.videoArray = [[NSMutableArray alloc] init];
         [self apiSilly];
     }
     
     if ([self.selectedMood isEqualToString:@"angry"]) {
+        self.videoArray = [[NSMutableArray alloc] init];
         [self apiAngry];
     }
     
@@ -208,7 +214,7 @@
                     NSLog(@"done");
                 }
                 self.title = [NSString stringWithFormat:@"Your Moody Videos"];
-                //                [self.collectionView reloadData];
+                [self.collectionView reloadData];
             });
         }
         else {
@@ -501,7 +507,7 @@
                     NSLog(@"done");
                 }
                 self.title = [NSString stringWithFormat:@"Your Moody Videos"];
-                //                [self.collectionView reloadData];
+                [self.collectionView reloadData];
             });
         }
         else {
@@ -559,7 +565,7 @@
                     NSLog(@"done");
                 }
                 self.title = [NSString stringWithFormat:@"Your Moody Videos"];
-                //                [self.collectionView reloadData];
+                [self.collectionView reloadData];
             });
         }
         else {
@@ -581,8 +587,6 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    
-    
     VideoCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"VideoCell" forIndexPath:indexPath];
     
     Video* video = [self.videoArray objectAtIndex:indexPath.item];
@@ -590,6 +594,14 @@
     cell.imageView.image = video.videoThumbnail;
     
     return cell;
+    
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    Video *video = [self.videoArray objectAtIndex:indexPath.item];
+    
+    [self.playerView loadWithVideoId:video.videoID];
     
 }
 
